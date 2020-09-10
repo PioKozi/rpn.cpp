@@ -1,7 +1,7 @@
 #include <cmath>
 #include <iostream>
-#include <vector>
 #include <limits>
+#include <vector>
 
 struct rpnstack {
 private:
@@ -23,6 +23,13 @@ private:
         this->push(op(b, a));
     }
 
+    // operations that require 1 operand
+    void one_op(double (*op)(double))
+    {
+        auto a                  = stack[stack.size() - 1];
+        stack[stack.size() - 1] = op(a);
+    }
+
 public:
     void push(double a) { stack.push_back(a); }
     void swap()
@@ -40,12 +47,12 @@ public:
             std::cout << std::fixed << i << std::endl;
         }
     }
-    void cycle_up()
+    void cycle_down()
     {
         auto a = this->pop();
         stack.insert(stack.begin(), a);
     }
-    void cycle_down()
+    void cycle_up()
     {
         auto a = stack[0];
         stack.erase(stack.begin());
@@ -76,5 +83,23 @@ public:
     void pow()
     {
         this->two_op([](auto l, auto r) { return std::pow(l, r); });
+    }
+    void log() // arbitrary base logarithm
+    {
+        this->two_op([](auto l, auto r) { return std::log(l)/std::log(r); });
+    }
+
+    // Basic 1 operand operations
+    void ln()
+    {
+        this->one_op([](auto n) { return std::log(n); });
+    }
+    void log10()
+    {
+        this->one_op([](auto n) { return std::log10(n); });
+    }
+    void log2()
+    {
+        this->one_op([](auto n) { return std::log2(n); });
     }
 };

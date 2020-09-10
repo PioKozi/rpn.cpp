@@ -31,6 +31,14 @@ int main()
             s.mod();
         else if (inp == "^" || inp == "pow")
             s.pow();
+        else if (inp == "log")
+            s.log();
+        else if (inp == "log10")
+            s.log10();
+        else if (inp == "log2")
+            s.log2();
+        else if (inp == "ln")
+            s.ln();
         else if (inp == "del")
             s.del();
         else if (inp == "swap")
