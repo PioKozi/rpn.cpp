@@ -40,6 +40,17 @@ public:
             std::cout << std::fixed << i << std::endl;
         }
     }
+    void cycle_up()
+    {
+        auto a = this->pop();
+        stack.insert(stack.begin(), a);
+    }
+    void cycle_down()
+    {
+        auto a = stack[0];
+        stack.erase(stack.begin());
+        stack.push_back(a);
+    }
 
     // Basic 2 operand operations
     void add()

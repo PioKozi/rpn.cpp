@@ -35,6 +35,10 @@ int main()
             s.del();
         else if (inp == "swap")
             s.swap();
+        else if (inp == "up")
+            s.cycle_up();
+        else if (inp == "down")
+            s.cycle_down();
 
         clear_screen();
         s.print_stack();
