@@ -29,6 +29,8 @@ int main()
             s.div();
         else if (inp == "%" || inp == "mod")
             s.mod();
+        else if (inp == "^" || inp == "pow")
+            s.pow();
         else if (inp == "del")
             s.del();
         else if (inp == "swap")

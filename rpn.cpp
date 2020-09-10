@@ -1,6 +1,7 @@
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
+#include <limits>
 
 struct rpnstack {
 private:
@@ -31,14 +32,12 @@ public:
         stack[stack.size() - 1] = b;
         stack[stack.size() - 2] = a;
     }
-    void del()
-    {
-        stack.pop_back();
-    }
+    void del() { stack.pop_back(); }
     void print_stack()
     {
+        std::cout.precision(std::numeric_limits<double>::max_digits10);
         for (auto i : stack) {
-            std::cout << i << std::endl;
+            std::cout << std::fixed << i << std::endl;
         }
     }
 
@@ -62,5 +61,9 @@ public:
     void mod()
     {
         this->two_op([](auto l, auto r) { return std::fmod(l, r); });
+    }
+    void pow()
+    {
+        this->two_op([](auto l, auto r) { return std::pow(l, r); });
     }
 };
