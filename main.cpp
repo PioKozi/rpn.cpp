@@ -1,33 +1,41 @@
 #include "./rpn.cpp"
 
+#include <cstdio>
 #include <iostream>
 #include <string>
 
 void clear_screen();
-bool is_number(std::string);
+bool parse_number(const std::string &, double &);
 
 int main()
 {
-    rpnstack test;
+    rpnstack s;
 
     std::cout << "Exit with ^C\n" << std::endl;
 
     while (true) {
         std::string inp;
         std::cin >> inp;
-        if (is_number(inp))
-            test.push(std::stod(inp));
-        else if (inp == "+" || inp == "add") {
-            test.add();
-        } else if (inp == "-" || inp == "sub") {
-            test.sub();
-        } else if (inp == "*" || inp == "mult") {
-            test.mult();
-        } else if (inp == "/" || inp == "div") {
-            test.div();
-        }
+        double num = 0;
+        if (parse_number(inp, num))
+            s.push(num);
+        else if (inp == "+" || inp == "add")
+            s.add();
+        else if (inp == "-" || inp == "sub")
+            s.sub();
+        else if (inp == "*" || inp == "mul")
+            s.mul();
+        else if (inp == "/" || inp == "div")
+            s.div();
+        else if (inp == "%" || inp == "mod")
+            s.mod();
+        else if (inp == "del")
+            s.del();
+        else if (inp == "swap")
+            s.swap();
+
         clear_screen();
-        test.print_stack();
+        s.print_stack();
     }
 
     return 0;
@@ -40,10 +48,8 @@ void clear_screen()
 }
 
 // checks if the input is a number, floating point true
-bool is_number(std::string inp)
+bool parse_number(const std::string &inp, double &num)
 {
-    for (char i : inp)
-        if (!isdigit(i) && i != '.')
-            return false;
-    return true;
+    char dummy;
+    return std::sscanf(inp.c_str(), "%lf%c", &num, &dummy) == 1;
 }

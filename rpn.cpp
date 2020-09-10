@@ -1,9 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 struct rpnstack {
 private:
-    std::vector<long double> stack;
+    std::vector<double> stack;
 
     auto pop()
     {
@@ -13,17 +14,27 @@ private:
     }
 
     // operations that require 2 operands
-    void two_op(long double (*op)(long double, long double))
+    void two_op(double (*op)(double, double))
     {
         auto a = this->pop();
         auto b = this->pop();
-        std::cout << "This is a test of make" << std::endl;
         // r->l, because l is more recent than r (like would be r in algebraic)
         this->push(op(b, a));
     }
 
 public:
-    void push(long double a) { stack.push_back(a); }
+    void push(double a) { stack.push_back(a); }
+    void swap()
+    {
+        auto a                  = stack[stack.size() - 1];
+        auto b                  = stack[stack.size() - 2];
+        stack[stack.size() - 1] = b;
+        stack[stack.size() - 2] = a;
+    }
+    void del()
+    {
+        stack.pop_back();
+    }
     void print_stack()
     {
         for (auto i : stack) {
@@ -40,12 +51,16 @@ public:
     {
         this->two_op([](auto l, auto r) { return l - r; });
     }
-    void mult()
+    void mul()
     {
         this->two_op([](auto l, auto r) { return l * r; });
     }
     void div()
     {
         this->two_op([](auto l, auto r) { return l / r; });
+    }
+    void mod()
+    {
+        this->two_op([](auto l, auto r) { return std::fmod(l, r); });
     }
 };
