@@ -17,6 +17,8 @@ private:
     // operations that require 2 operands
     void two_op(double (*op)(double, double))
     {
+        if (stack.size() < 2)
+            return;
         auto a = this->pop();
         auto b = this->pop();
         // r->l, because l is more recent than r (like would be r in algebraic)
@@ -26,6 +28,8 @@ private:
     // operations that require 1 operand
     void one_op(double (*op)(double))
     {
+        if (stack.size() < 1)
+            return;
         auto a                  = stack[stack.size() - 1];
         stack[stack.size() - 1] = op(a);
     }
@@ -34,12 +38,19 @@ public:
     void push(double a) { stack.push_back(a); }
     void swap()
     {
+        if (stack.size() < 2)
+            return;
         auto a                  = stack[stack.size() - 1];
         auto b                  = stack[stack.size() - 2];
         stack[stack.size() - 1] = b;
         stack[stack.size() - 2] = a;
     }
-    void del() { stack.pop_back(); }
+    void del()
+    {
+        if (stack.size() < 1)
+            return;
+        stack.pop_back();
+    }
     void print_stack()
     {
         std::cout.precision(std::numeric_limits<double>::max_digits10);
@@ -84,9 +95,9 @@ public:
     {
         this->two_op([](auto l, auto r) { return std::pow(l, r); });
     }
-    void log() // arbitrary base logarithm
+    void log()  // arbitrary base logarithm
     {
-        this->two_op([](auto l, auto r) { return std::log(l)/std::log(r); });
+        this->two_op([](auto l, auto r) { return std::log(l) / std::log(r); });
     }
 
     // Basic 1 operand operations
