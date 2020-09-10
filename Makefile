@@ -10,7 +10,7 @@ $(EXECUTABLE) : $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $(EXECUTABLE)
 
 $(OBJECTS) : $(SOURCES)
-	$(CXX) $(CXXFLAGS) -c $?
+	$(CXX) $(CXXFLAGS) -c $^
 
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE)

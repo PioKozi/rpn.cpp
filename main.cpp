@@ -19,15 +19,12 @@ int main()
             test.push(std::stod(inp));
         else if (inp == "+" || inp == "add") {
             test.add();
-        }
-        if (inp == "-" || inp == "sub") {
-            test.add();
-        }
-        if (inp == "*" || inp == "mult") {
-            test.add();
-        }
-        if (inp == "/" || inp == "div") {
-            test.add();
+        } else if (inp == "-" || inp == "sub") {
+            test.sub();
+        } else if (inp == "*" || inp == "mult") {
+            test.mult();
+        } else if (inp == "/" || inp == "div") {
+            test.div();
         }
         clear_screen();
         test.print_stack();
