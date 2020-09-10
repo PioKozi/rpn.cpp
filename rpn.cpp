@@ -18,7 +18,8 @@ private:
         auto a = this->pop();
         auto b = this->pop();
         std::cout << "This is a test of make" << std::endl;
-        this->push(op(a, b));
+        // r->l, because l is more recent than r (like would be r in algebraic)
+        this->push(op(b, a));
     }
 
 public:
@@ -33,18 +34,18 @@ public:
     // Basic 2 operand operations
     void add()
     {
-        this->two_op([](auto l, auto r) { return r + l; });
+        this->two_op([](auto l, auto r) { return l + r; });
     }
     void sub()
     {
-        this->two_op([](auto l, auto r) { return r - l; });
+        this->two_op([](auto l, auto r) { return l - r; });
     }
     void mult()
     {
-        this->two_op([](auto l, auto r) { return r * l; });
+        this->two_op([](auto l, auto r) { return l * r; });
     }
     void div()
     {
-        this->two_op([](auto l, auto r) { return r / l; });
+        this->two_op([](auto l, auto r) { return l / r; });
     }
 };
