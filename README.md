@@ -22,7 +22,7 @@ changing that later for greater precision.
 
 From there on it should be like a normal RPN calculator.
 Mind, it will also clear your screen. If you don't want that, you can
-remove the [relevant function call in the code](https://github.com/PioKozi/rpn.cpp/blob/master/main.cpp#L51)
+remove the [relevant function call in the code](https://github.com/PioKozi/rpn.cpp/blob/master/main.cpp#L54)
 
 ## Documentation
 
