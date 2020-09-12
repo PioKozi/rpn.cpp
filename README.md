@@ -12,9 +12,11 @@ later, but that's unknown.
 It just uses standard library C++ stuff. Maybe that'll be worth
 changing that later for greater precision.
 
-`git clone https://github.com/PioKozi/rpn.cpp.git`
-`cd rpn.cpp`
-`make`
+```bash
+git clone https://github.com/PioKozi/rpn.cpp.git
+cd rpn.cpp
+make
+```
 
 ## Usage
 
@@ -30,6 +32,21 @@ Codebase isn't large, operations can be found in main.cpp, in that
 chain of if/if else statements. Otherwise, it should do what you'd
 expect of an RPN calculator. So there's not any real documentation,
 nor do I expect there will be a need for any.
+
+## Contributing
+
+I have no idea why you would want to do anything with this, but if you
+want to, sure.
+
+I haven't used C++ that much, don't know it all that well, but I'll
+try to understand things if they're somewhat advanced. Problems would
+be when things start looking weird and obscure, so please don't do
+that.
+
+Also throw the code through `clang-format`. There's a `.clang-format`
+file with my rules in there.
+
+Please be nice :-)
 
 ## License
 
