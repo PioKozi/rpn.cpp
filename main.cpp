@@ -1,4 +1,4 @@
-#include "./rpn.cpp"
+#include "./rpn.hpp"
 
 #include <cstdio>
 #include <iostream>
@@ -33,13 +33,13 @@ int main()
             s.mod();
         else if (inp == "^" || inp == "pow")
             s.pow();
-        else if (inp == "log") // *arbitrary* log
+        else if (inp == "log")  // *arbitrary* log
             s.log();
         else if (inp == "log10")
             s.log10();
         else if (inp == "log2")
             s.log2();
-        else if (inp == "ln") // natural log
+        else if (inp == "ln")  // natural log
             s.ln();
         // operations more to do with the stack than the numbers in it
         else if (inp == "del")
@@ -51,20 +51,22 @@ int main()
         else if (inp == "down")
             s.cycle_down();
 
-        clear_screen(); // clears the screen before printing the new stack
+        clear_screen();  // clears the screen before printing the new stack
         s.print_stack();
     }
 
     return 0;
 }
 
-// prints character to reset terminal. This may have side-effects, work on it later
+// prints character to reset terminal. This may have side-effects, work on it
+// later
 void clear_screen()
 {
     std::cout << "\033c";
 }
 
-// checks if the input is a number, also converts it to a double if it can be parsed
+// checks if the input is a number, also converts it to a double if it can be
+// parsed
 bool parse_number(const std::string &inp, double &num)
 {
     char dummy;
